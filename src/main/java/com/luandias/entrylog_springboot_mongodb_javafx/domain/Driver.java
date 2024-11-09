@@ -1,25 +1,30 @@
 package com.luandias.entrylog_springboot_mongodb_javafx.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "tb_driver")
 public class Driver implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
 	private String id;
 	private String name;
 	private Integer rg;
 	private Integer cpf;
 	private Integer cnh;
-	private Date birthdate;
+	private LocalDate birthdate;
 	
 	public Driver() {
 		
 	}
 
-	public Driver(String id, String name, Integer rg, Integer cpf, Integer cnh, Date birthdate) {
+	public Driver(String id, String name, Integer rg, Integer cpf, Integer cnh, LocalDate birthdate) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -69,11 +74,11 @@ public class Driver implements Serializable {
 		this.cnh = cnh;
 	}
 
-	public Date getBirthdate() {
+	public LocalDate getBirthdate() {
 		return birthdate;
 	}
 
-	public void setBirthdate(Date birthdate) {
+	public void setBirthdate(LocalDate birthdate) {
 		this.birthdate = birthdate;
 	}
 
