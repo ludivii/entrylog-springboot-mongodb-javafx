@@ -1,7 +1,6 @@
 package com.luandias.entrylog_springboot_mongodb_javafx.config;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,6 @@ public class Instantiation implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		
 		driverRepository.deleteAll();
 		

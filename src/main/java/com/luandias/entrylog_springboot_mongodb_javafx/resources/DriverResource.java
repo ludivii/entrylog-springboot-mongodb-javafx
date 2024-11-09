@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.luandias.entrylog_springboot_mongodb_javafx.domain.Driver;
+import com.luandias.entrylog_springboot_mongodb_javafx.dto.DriverDTO;
 import com.luandias.entrylog_springboot_mongodb_javafx.servicies.DriverService;
 
 @RestController
@@ -19,9 +20,10 @@ public class DriverResource {
 	private DriverService driverService;
 	
 	@GetMapping
-	public ResponseEntity<List<Driver>> findAll(){
+	public ResponseEntity<List<DriverDTO>> findAll(){
 		List<Driver> list = driverService.findAll();
-		return ResponseEntity.ok().body(list);
+		List<DriverDTO> listDTO = list.stream().map(x -> new DriverDTO(x)).toList();
+		return ResponseEntity.ok().body(listDTO);
 	}
 
 }
