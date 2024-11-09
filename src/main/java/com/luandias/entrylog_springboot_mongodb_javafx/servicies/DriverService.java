@@ -30,6 +30,26 @@ public class DriverService {
 		return driverRepository.insert(driver);
 	}
 	
+	public void delete(String id) {
+		findById(id);
+		driverRepository.deleteById(id);
+	}
+	
+	public Driver update (Driver driver) {
+		Driver newDriver = findById(driver.getId());
+		updateData(newDriver, driver);
+		return driverRepository.save(newDriver);
+	}
+	
+	private void updateData(Driver newDriver, Driver driver) {
+		newDriver.setName(driver.getName());
+		newDriver.setRg(driver.getRg());
+		newDriver.setCpf(driver.getCpf());
+		newDriver.setCnh(driver.getCnh());
+		newDriver.setBirthdate(driver.getBirthdate());
+		
+	}
+
 	public Driver fromDTO(DriverDTO driverDTO) {
 		return new Driver(driverDTO.getId(), driverDTO.getName(), driverDTO.getRg(), driverDTO.getCpf(), driverDTO.getCnh(), driverDTO.getBirthdate());
 	}
