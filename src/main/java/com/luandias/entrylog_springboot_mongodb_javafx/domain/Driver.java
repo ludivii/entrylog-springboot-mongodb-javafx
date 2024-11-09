@@ -1,7 +1,6 @@
 package com.luandias.entrylog_springboot_mongodb_javafx.domain;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
@@ -25,14 +24,14 @@ public class Driver implements Serializable {
 		
 	}
 
-	public Driver(String id, String name, Integer rg, Integer cpf, Integer cnh, LocalDate birthdate) {
+	public Driver(String id, String name, Integer rg, Integer cpf, Integer cnh, String birthdate) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.rg = rg;
 		this.cpf = cpf;
 		this.cnh = cnh;
-		this.birthdate = birthdate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		this.birthdate = birthdate.formatted(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 	}
 
 	public String getId() {
