@@ -2,10 +2,13 @@ package com.luandias.entrylog_springboot_mongodb_javafx.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Document(collection = "tb_driver")
 public class Driver implements Serializable {
@@ -18,7 +21,7 @@ public class Driver implements Serializable {
 	private Integer rg;
 	private Integer cpf;
 	private Integer cnh;
-	private LocalDate birthdate;
+	private String birthdate;
 	
 	public Driver() {
 		
@@ -31,7 +34,7 @@ public class Driver implements Serializable {
 		this.rg = rg;
 		this.cpf = cpf;
 		this.cnh = cnh;
-		this.birthdate = birthdate;
+		this.birthdate = birthdate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 	}
 
 	public String getId() {
@@ -74,11 +77,11 @@ public class Driver implements Serializable {
 		this.cnh = cnh;
 	}
 
-	public LocalDate getBirthdate() {
+	public String getBirthdate() {
 		return birthdate;
 	}
 
-	public void setBirthdate(LocalDate birthdate) {
+	public void setBirthdate(String birthdate) {
 		this.birthdate = birthdate;
 	}
 
