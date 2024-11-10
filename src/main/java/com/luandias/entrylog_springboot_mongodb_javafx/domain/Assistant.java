@@ -7,8 +7,8 @@ import java.util.Objects;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "tb_driver")
-public class Driver implements Serializable {
+@Document(collection = "tb_assistant")
+public class Assistant implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -17,20 +17,18 @@ public class Driver implements Serializable {
 	private String name;
 	private Integer rg;
 	private Integer cpf;
-	private Integer cnh;
 	private String birthdate;
 
-	public Driver() {
+	public Assistant() {
 
 	}
 
-	public Driver(String id, String name, Integer rg, Integer cpf, Integer cnh, String birthdate) {
+	public Assistant(String id, String name, Integer rg, Integer cpf, String birthdate) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.rg = rg;
 		this.cpf = cpf;
-		this.cnh = cnh;
 		this.birthdate = birthdate.formatted(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 	}
 
@@ -66,14 +64,6 @@ public class Driver implements Serializable {
 		this.cpf = cpf;
 	}
 
-	public Integer getCnh() {
-		return cnh;
-	}
-
-	public void setCnh(Integer cnh) {
-		this.cnh = cnh;
-	}
-
 	public String getBirthdate() {
 		return birthdate;
 	}
@@ -95,7 +85,7 @@ public class Driver implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Driver other = (Driver) obj;
+		Assistant other = (Assistant) obj;
 		return Objects.equals(id, other.id);
 	}
 

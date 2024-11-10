@@ -14,51 +14,52 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.luandias.entrylog_springboot_mongodb_javafx.domain.Driver;
-import com.luandias.entrylog_springboot_mongodb_javafx.dto.DriverDTO;
-import com.luandias.entrylog_springboot_mongodb_javafx.servicies.DriverService;
+import com.luandias.entrylog_springboot_mongodb_javafx.domain.Vehicle;
+import com.luandias.entrylog_springboot_mongodb_javafx.dto.VehicleDTO;
+import com.luandias.entrylog_springboot_mongodb_javafx.servicies.VehicleService;
 import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
-@RequestMapping(value = "/drivers")
-public class DriverResource {
+@RequestMapping(value = "/vehicles")
+public class VehicleResource {
 
 	@Autowired
-	private DriverService driverService;
+	private VehicleService vehicleService;
 
 	@GetMapping
-	public ResponseEntity<List<DriverDTO>> findAll() {
-		List<Driver> list = driverService.findAll();
-		List<DriverDTO> listDTO = list.stream().map(x -> new DriverDTO(x)).toList();
+	public ResponseEntity<List<VehicleDTO>> findAll() {
+		List<Vehicle> list = vehicleService.findAll();
+		List<VehicleDTO> listDTO = list.stream().map(x -> new VehicleDTO(x)).toList();
 		return ResponseEntity.ok().body(listDTO);
 	}
 
 	@SuppressWarnings("rawtypes")
 	@GetMapping(value = "/{id}")
-	public ResponseEntity DriverDTO(@PathVariable String id) {
-		Driver driver = driverService.findById(id);
-		return ResponseEntity.ok().body(driver);
+	public ResponseEntity VehicleDTO(@PathVariable String id) {
+		Vehicle vehicle = vehicleService.findById(id);
+		return ResponseEntity.ok().body(vehicle);
 	}
 
 	@PostMapping
-	public ResponseEntity<Void> insert(@RequestBody DriverDTO driverDTO) {
-		Driver driver = driverService.fromDTO(driverDTO);
-		driver = driverService.insert(driver);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(driver.getId()).toUri();
+	public ResponseEntity<Void> insert(@RequestBody VehicleDTO vehicleDTO) {
+		Vehicle vehicle = vehicleService.fromDTO(vehicleDTO);
+		vehicle = vehicleService.insert(vehicle);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(vehicle.getId())
+				.toUri();
 		return ResponseEntity.created(uri).build();
 	}
 
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable String id) {
-		driverService.delete(id);
+		vehicleService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Void> update(@PathVariable String id, @RequestBody DriverDTO driverDTO) {
-		Driver driver = driverService.fromDTO(driverDTO);
-		driver.setId(id);
-		driver = driverService.update(driver);
+	public ResponseEntity<Void> update(@PathVariable String id, @RequestBody VehicleDTO vehicleDTO) {
+		Vehicle vehicle = vehicleService.fromDTO(vehicleDTO);
+		vehicle.setId(id);
+		vehicle = vehicleService.update(vehicle);
 		return ResponseEntity.noContent().build();
 	}
 

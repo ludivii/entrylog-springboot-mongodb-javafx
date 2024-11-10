@@ -2,9 +2,9 @@ package com.luandias.entrylog_springboot_mongodb_javafx.dto;
 
 import java.io.Serializable;
 
-import com.luandias.entrylog_springboot_mongodb_javafx.domain.Driver;
+import com.luandias.entrylog_springboot_mongodb_javafx.domain.Assistant;
 
-public class DriverDTO implements Serializable {
+public class AssistantDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -12,19 +12,17 @@ public class DriverDTO implements Serializable {
 	private String name;
 	private Integer rg;
 	private Integer cpf;
-	private Integer cnh;
 	private String birthdate;
 
-	public DriverDTO() {
+	public AssistantDTO() {
 
 	}
 
-	public DriverDTO(Driver obj) {
+	public AssistantDTO(Assistant obj) {
 		id = obj.getId();
 		name = obj.getName();
 		rg = obj.getRg();
 		cpf = obj.getCpf();
-		cnh = obj.getCnh();
 		birthdate = obj.getBirthdate();
 	}
 
@@ -58,14 +56,6 @@ public class DriverDTO implements Serializable {
 
 	public void setCpf(Integer cpf) {
 		this.cpf = cpf;
-	}
-
-	public Integer getCnh() {
-		return cnh;
-	}
-
-	public void setCnh(Integer cnh) {
-		this.cnh = cnh;
 	}
 
 	public String getBirthdate() {
